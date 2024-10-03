@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mysql
+  name: mysql-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - image: mysql:5.7
+        name: mysql
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: P12345
+        - name: MYSQL_DATABASE
+          value: phonebook
+        - name: MYSQL_USER
+          value: clarus
+        - name: MYSQL_PASSWORD
+          value: Clarusway_1
+        ports:
+        - containerPort: 3306
+        resources: {}
