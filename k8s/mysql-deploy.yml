@@ -14,6 +14,10 @@ spec:
       labels:
         app: mysql
     spec:
+      volumes:
+      - name: mysql-pv-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
       containers:
       - image: mysql:5.7
         name: mysql
@@ -26,6 +30,9 @@ spec:
           value: clarus
         - name: MYSQL_PASSWORD
           value: Clarusway_1
+        volumeMounts:
+        - mountPath: "/var/lib/mysql"
+          name: mysql-pv-storage
         ports:
         - containerPort: 3306
         resources: {}
