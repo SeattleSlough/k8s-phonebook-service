@@ -2,24 +2,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: mysql
-  name: mysql
+    app: resultserver
+  name: resultserver
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysql
+      app: resultserver
   template:
     metadata:
       labels:
-        app: mysql
+        app: resultserver
     spec:
       containers:
-      - image: mysql:5.7
-        name: mysql
+      - image: seattleslough/resultserver
+        name: resultserver
         env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: P12345
+        - name: MYSQL_DATABASE_HOST
+          value: mysql
         - name: MYSQL_DATABASE
           value: phonebook
         - name: MYSQL_USER
@@ -27,5 +27,5 @@ spec:
         - name: MYSQL_PASSWORD
           value: Clarusway_1
         ports:
-        - containerPort: 3306
-        resources: {}
+        - containerPort: 80
+status: {}
