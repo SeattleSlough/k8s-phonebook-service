@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: resultserver
+  name: resultserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resultserver
+  template:
+    metadata:
+      labels:
+        app: resultserver
+    spec:
+      containers:
+      - image: {{ .Values.resultserver_image }}
+        name: resultserver
+        envFrom:
+        - configMapRef:
+            name: mysql-cm
+        - secretRef:
+            name: mysql-secret
+        ports:
+        - containerPort: 80
+status: {}

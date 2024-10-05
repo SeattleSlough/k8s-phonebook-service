@@ -1,0 +1,2 @@
+webserver_image: seattleslough/webserver
+resultserver_image: seattleslough/resultserver
